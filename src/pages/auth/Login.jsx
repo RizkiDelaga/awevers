@@ -30,13 +30,13 @@ function Login() {
 
       switch (routerParams_directTo) {
         case 'pocketlink.com':
-          window.location.href = `https://first-program.vercel.app/LoginProcess?token=${res.data.accessToken}`;
+          window.location.href = `http://localhost:3000/LoginProcess?token=${res.data.accessToken}`;
           break;
         case 'masterpad.com':
           window.location.href = `https://first-program.vercel.app/quill`;
           break;
         default:
-          navigate('');
+          navigate('/');
           break;
       }
     } catch (error) {

@@ -13,9 +13,15 @@ export default function Home() {
       <Button variant="outlined" onClick={() => navigate('/Register')}>
         Register
       </Button>
+      <Button variant="outlined" onClick={() => navigate('/Register')}>
+        Register
+      </Button>
 
       <Button variant="outlined" onClick={() => navigate('/Login?directTo=pocketlink.com')}>
         Direct Login
+      </Button>
+      <Button variant="outlined" onClick={() => navigate('/Register?directTo=pocketlink.com')}>
+        Direct Register
       </Button>
     </>
   );
