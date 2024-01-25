@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Fragment, useState } from 'react';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useLocation, useNavigate } from 'react-router';
+import { Navigate, Outlet, useLocation, useNavigate } from 'react-router';
 
 function Login() {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function Login() {
           window.location.href = `http://localhost:3000/LoginProcess?token=${res.data.accessToken}`;
           break;
         case 'masterpad.com':
-          window.location.href = `https://first-program.vercel.app/quill`;
+          window.location.href = `http://localhost:3002/LoginProcess?token=${res.data.accessToken}`;
           break;
         default:
           navigate('/');

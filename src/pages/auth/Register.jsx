@@ -31,18 +31,23 @@ function Register() {
           password: formRegister.password,
         },
       });
-
-      switch (routerParams_directTo) {
-        case 'pocketlink.com':
-          navigate(`/Login?directTo=${routerParams_directTo}`);
-          break;
-        case 'masterpad.com':
-          navigate(`/Login?directTo=${routerParams_directTo}`);
-          break;
-        default:
-          navigate('/Login');
-          break;
+      if (routerParams_directTo) {
+        navigate(`/Login?directTo=${routerParams_directTo}`);
+      } else {
+        navigate('/Login');
       }
+
+      // switch (routerParams_directTo) {
+      //   case 'pocketlink.com':
+      //     navigate(`/Login?directTo=${routerParams_directTo}`);
+      //     break;
+      //   case 'masterpad.com':
+      //     navigate(`/Login?directTo=${routerParams_directTo}`);
+      //     break;
+      //   default:
+      //     navigate('/Login');
+      //     break;
+      // }
     } catch (error) {
       console.log(error);
     }
