@@ -15,6 +15,7 @@ function Login() {
 
   const location = useLocation();
   const routerParams_directTo = new URLSearchParams(location.search).get('directTo');
+  const routerParams_tokenStatus = new URLSearchParams(location.search).get('tokenStatus');
 
   const handleLogin = async () => {
     try {
@@ -28,17 +29,11 @@ function Login() {
       });
       localStorage.setItem('accessToken', res.data.accessToken);
 
-      switch (routerParams_directTo) {
-        case 'pocketlink.com':
-          window.location.href = `http://localhost:3000/LoginProcess?token=${res.data.accessToken}`;
-          break;
-        case 'masterpad.com':
-          window.location.href = `http://localhost:3002/LoginProcess?token=${res.data.accessToken}`;
-          break;
-        default:
-          navigate('/');
-          break;
+      if (routerParams_directTo) {
+        window.location.href = `${routerParams_directTo}/LoginProcess?token=${res.data.accessToken}`;
+        return null;
       }
+      navigate('/Dashboard');
     } catch (error) {
       console.log(error);
     }
@@ -47,6 +42,9 @@ function Login() {
   return (
     <Fragment>
       <div>
+        {localStorage.getItem('accessToken') && routerParams_tokenStatus
+          ? 'Token Status: ' + routerParams_tokenStatus
+          : null}
         <form
           onSubmit={(e) => {
             e.preventDefault();

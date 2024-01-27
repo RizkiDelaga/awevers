@@ -16,13 +16,6 @@ export default function Home() {
       <Button variant="outlined" onClick={() => navigate('/Dashboard')}>
         Dashboard
       </Button>
-
-      <Button variant="outlined" onClick={() => navigate('/Login?directTo=pocketlink.com')}>
-        Direct Login
-      </Button>
-      <Button variant="outlined" onClick={() => navigate('/Register?directTo=pocketlink.com')}>
-        Direct Register
-      </Button>
     </>
   );
 }
