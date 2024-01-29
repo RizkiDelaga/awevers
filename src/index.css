@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+}
+
+/* ========= LINK ======== */
+
+a {
+    /* color: inherit !important; */
+    text-decoration: none !important;
+    cursor: pointer !important;
+}

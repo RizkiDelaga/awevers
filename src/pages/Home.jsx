@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <h1>Home</h1>
-      <Button variant="outlined" onClick={() => navigate('/Login')}>
+      <Button variant="contained" color='alternative' onClick={() => navigate('/Login')}>
         Login
       </Button>
       <Button variant="outlined" onClick={() => navigate('/Register')}>

@@ -7,11 +7,27 @@ import Register from "./pages/auth/Register";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import AccountValidation from "./pages/auth/AccountValidation";
-import PageNotFound404 from "./pages/PageNotFound404";
 
 import ThemeProviderComponent from "./provider/components/ThemeProviderComponent";
 import ThemeModeComponent from "./provider/components/ThemeModeComponent";
-import { useEffect } from "react";
+import DashboardLayout from "./layouts/DashboardLayout";
+import DefaultLayout from "./layouts/DefaultLayout";
+import ChangePassword from "./pages/Dashboard/Profile/ChangePassword/ChangePassword";
+import Notifications from "./pages/Dashboard/Notifications/Notifications";
+import Settings from "./pages/Dashboard/Settings/Settings";
+import ActiveSubscription from "./pages/Dashboard/ActiveSubscription/ActiveSubscription";
+import Subscription from "./pages/Subscription/Subscription";
+import PaymentMethod from "./pages/Subscription/PaymentMethod/PaymentMethod";
+import Checkout from "./pages/Subscription/PaymentMethod/Checkout/Checkout";
+import PaymentInfo from "./pages/Subscription/PaymentInfo/PaymentInfo";
+import Profile from "./pages/Dashboard/Profile/Profile";
+import UseVoucherCode from "./pages/Subscription/UseVoucherCode/UseVoucherCode";
+import Promo from "./pages/Subscription/Promo/Promo";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import HelpCenter from "./pages/HelpCenter/HelpCenter";
+import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
+import Feedback from "./pages/Feedback/Feedback";
+import TermsOfUse from "./pages/TermsOfUse/TermsOfUse";
 
 function App() {
 
@@ -45,32 +61,53 @@ function App() {
       
     } else {
       return  <Navigate to={`/Login?${routerParams_directTo? 'directTo='+routerParams_directTo: '' }`} />
-      // navigate(`/Login?${routerParams_directTo? 'directTo='+routerParams_directTo: null }`)
     }
 }
-
 
   return (
     <ThemeModeComponent>
       <ThemeProviderComponent>
         <BrowserRouter>
           <Routes>  
-            <Route path="" element={<Home />} />
-            <Route path="SSOValidation" element={<SSOValidation />} />
+            <Route element={<DashboardLayout />} >
+              <Route element={<ProtectedRoute />}>
+                <Route path="Dashboard" element={<Dashboard />} />
+                <Route path="Dashboard/Profile" element={<Profile />} />
+                <Route path="Dashboard/Profile/ChangePassword" element={<ChangePassword />} />
+                <Route path="Dashboard/Notifications" element={<Notifications />} />
+                <Route path="Dashboard/Settings" element={<Settings />} />
+                <Route path="Dashboard/ActiveSubscription" element={<ActiveSubscription />} />
+              </Route>
+            </Route>
+            
+            <Route element={<DefaultLayout />} >
+              <Route path="" element={<Home />} />
+              
+              <Route path="Subscription" element={<Subscription />} />
+              <Route path="Subscription/PaymentMethod" element={<PaymentMethod />} />
+              <Route path="Subscription/PaymentMethod/Checkout" element={<Checkout />} />
+              <Route path="Subscription/PaymentInfo" element={<PaymentInfo />} />
+              <Route path="Subscription/UseVoucherCode" element={<UseVoucherCode />} />
+              <Route path="Subscription/Promo" element={<Promo />} />
+              
+              <Route path="HelpCenter" element={<HelpCenter />} />
+              <Route path="TermsOfUse" element={<TermsOfUse />} />
+              <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
+              <Route path="Feedback" element={<Feedback />} />
+
+              <Route element={<HandleLoginSuccessfully />}>
+                <Route path="ForgotPassword" element={<ForgotPassword />} />
+              </Route>
+            </Route>
+
             <Route path="Login" element={<Login />} />
             <Route path="Register" element={<Register />} />
-            <Route element={<HandleLoginSuccessfully />}>
-              <Route path="ForgotPassword" element={<ForgotPassword />} />
-            </Route>
+
+            
+            <Route path="SSOValidation" element={<SSOValidation />} />
             <Route path="AccountValidation" element={<AccountValidation />} />
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="Dashboard" element={<Dashboard />} />
-              {/* <Route path="Dashboard/" element={<Dashboard />} />
-              <Route path="Dashboard/" element={<Dashboard />} /> */}
-            </Route>
-
-            <Route path="*" element={<PageNotFound404 />}/>
+            <Route path="*" element={<PageNotFound />}/>
 
           </Routes>
         </BrowserRouter>
@@ -83,3 +120,8 @@ function App() {
 export default App;
 
 
+// All Theme Color
+// All Layout
+// All Frame
+// All Lingin & Register
+// Text Editor
