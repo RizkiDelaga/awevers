@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import ThemeModeContext from '../contexts/ThemeMode';
 
 export default function ThemeModeComponent({ children }) {
-  const [themeMode, setThemeMode] = useState('light');
+  const [themeMode, setThemeMode] = useState(localStorage.getItem('themeMode') || 'light');
 
   // Fungsi untuk mengubah nilai tema
   const toggleThemeMode = () => {
-    setThemeMode((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    setThemeMode((prevTheme) => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('themeMode', newTheme);
+      return newTheme;
+    });
   };
 
   // Menyediakan nilai dan fungsi untuk diakses oleh konsumen

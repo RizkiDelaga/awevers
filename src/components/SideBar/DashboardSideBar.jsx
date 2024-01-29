@@ -23,6 +23,10 @@ import QrCode2Icon from '@mui/icons-material/QrCode2';
 import ViewDayIcon from '@mui/icons-material/ViewDay';
 import ThemeModeContext from '../../provider/contexts/ThemeMode';
 import LanguageIcon from '@mui/icons-material/Language';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import AppleIcon from '@mui/icons-material/Apple';
+import XIcon from '@mui/icons-material/X';
 
 const drawerWidth = 300;
 
@@ -123,10 +127,8 @@ export default function DashboardSideBar(props) {
         >
           <Box>
             {[
-              { title: 'Dashboard', icon: <DashboardIcon />, link: '/Dashboard' },
-              { title: 'Short Link', icon: <LinkIcon />, link: '/Dashboard/ShortLink' },
-              { title: 'QR Code', icon: <QrCode2Icon />, link: '/Dashboard/QRCode' },
-              { title: 'Link Page', icon: <ViewDayIcon />, link: '/Dashboard/LinkPage' },
+              { title: 'Pocketlink', icon: <AppleIcon />, link: '/Dashboard/PocketLink' },
+              { title: 'Masterpad', icon: <XIcon />, link: '/Dashboard/MasterPad' },
             ].map((listNavbar, index) => {
               return (
                 <>
@@ -209,7 +211,17 @@ export default function DashboardSideBar(props) {
                       color: 'primary.main',
                     }}
                   >
-                    <Switch onChange={toggleThemeMode} />
+                    <Switch
+                      checked={themeMode === 'light' ? true : false}
+                      icon={
+                        <LightModeIcon fontSize="small" color="primary" sx={{ bgcolor: 'white', borderRadius: 100 }} />
+                      }
+                      checkedIcon={
+                        <DarkModeIcon fontSize="small" color="primary" sx={{ bgcolor: 'white', borderRadius: 100 }} />
+                      }
+                      onChange={toggleThemeMode}
+                      name="themeSwitch"
+                    />
                   </ListItemIcon>
                 </ListItemButton>
               </Tooltip>

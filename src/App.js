@@ -2,11 +2,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router';
 
 import Home from "./pages/Home";
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
-import ForgotPassword from "./pages/auth/ForgotPassword";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
+import ForgotPassword from "./pages/Auth/ForgotPassword";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import AccountValidation from "./pages/auth/AccountValidation";
+import AccountValidation from "./pages/Auth/AccountValidation";
 
 import ThemeProviderComponent from "./provider/components/ThemeProviderComponent";
 import ThemeModeComponent from "./provider/components/ThemeModeComponent";
@@ -28,6 +28,8 @@ import HelpCenter from "./pages/HelpCenter/HelpCenter";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import Feedback from "./pages/Feedback/Feedback";
 import TermsOfUse from "./pages/TermsOfUse/TermsOfUse";
+import MasterPad from "./pages/Dashboard/MasterPad/MasterPad";
+import PocketLink from "./pages/Dashboard/PocketLink/PocketLink";
 
 function App() {
 
@@ -77,6 +79,9 @@ function App() {
                 <Route path="Dashboard/Notifications" element={<Notifications />} />
                 <Route path="Dashboard/Settings" element={<Settings />} />
                 <Route path="Dashboard/ActiveSubscription" element={<ActiveSubscription />} />
+
+                <Route path="Dashboard/PocketLink" element={<PocketLink />} />
+                <Route path="Dashboard/MasterPad" element={<MasterPad />} />
               </Route>
             </Route>
             
@@ -123,5 +128,5 @@ export default App;
 // All Theme Color
 // All Layout
 // All Frame
-// All Lingin & Register
+// All Login & Register
 // Text Editor
