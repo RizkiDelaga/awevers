@@ -6,7 +6,6 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import AccountValidation from "./pages/Auth/AccountValidation";
 
 import ThemeProviderComponent from "./provider/components/ThemeProviderComponent";
 import ThemeModeComponent from "./provider/components/ThemeModeComponent";
@@ -30,11 +29,14 @@ import Feedback from "./pages/Feedback/Feedback";
 import TermsOfUse from "./pages/TermsOfUse/TermsOfUse";
 import MasterPad from "./pages/Dashboard/MasterPad/MasterPad";
 import PocketLink from "./pages/Dashboard/PocketLink/PocketLink";
+import axios from "axios";
+import { useEffect } from "react";
+import SSOValidation from "./pages/SSOValidation/SSOValidation";
+import AuthLayout from "./layouts/AuthLayout";
 
 function App() {
 
   const HandleLoginSuccessfully = () => {
-    // LoginValidation()
     if (localStorage.getItem("accessToken")) {
         return <Navigate to={"/Dashboard"} />
     }
@@ -48,29 +50,32 @@ function App() {
     return <Outlet/>;
   }
 
+  const handleCheckToken = async () => {
+    try {
+      const res = await axios({
+        method: 'GET',
+        url: `${process.env.REACT_APP_API_KEY}/api/v1/user/checkTokens`,
+        headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
+      });
 
-  const SSOValidation = () => {
-    const location = useLocation();
-    const routerParams_directTo = new URLSearchParams(location.search).get('directTo');
-    
-    if (localStorage.getItem('accessToken')) {
-      // Validasi Token by API
-      if (false) {
-        window.location.href =`${routerParams_directTo}/LoginProcess?token=${localStorage.getItem('accessToken')}`
-      } else {
-        return routerParams_directTo? <Navigate to={`/Login?tokenStatus=expired&directTo=${routerParams_directTo}`} /> : <Navigate to={'/Login?tokenStatus=expired'}/>
+      if (res.data.tokenStatus !== 'Valid') {
+        return localStorage.removeItem('accessToken');
       }
-      
-    } else {
-      return  <Navigate to={`/Login?${routerParams_directTo? 'directTo='+routerParams_directTo: '' }`} />
+      return null
+    } catch (error) {
+      console.log(error);
     }
-}
+  };
+
+  useEffect(() => {
+    handleCheckToken()
+  },[])
 
   return (
     <ThemeModeComponent>
       <ThemeProviderComponent>
         <BrowserRouter>
-          <Routes>  
+          <Routes>
             <Route element={<DashboardLayout />} >
               <Route element={<ProtectedRoute />}>
                 <Route path="Dashboard" element={<Dashboard />} />
@@ -100,17 +105,17 @@ function App() {
               <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
               <Route path="Feedback" element={<Feedback />} />
 
-              <Route element={<HandleLoginSuccessfully />}>
-                <Route path="ForgotPassword" element={<ForgotPassword />} />
-              </Route>
             </Route>
 
-            <Route path="Login" element={<Login />} />
-            <Route path="Register" element={<Register />} />
-
+            <Route element={<AuthLayout />}>
+              <Route element={<HandleLoginSuccessfully />}>
+                <Route path="ForgotPassword" element={<ForgotPassword />} />
+                <Route path="Login" element={<Login />} />
+              </Route>
+              <Route path="Register" element={<Register />} />
+            </Route>
             
             <Route path="SSOValidation" element={<SSOValidation />} />
-            <Route path="AccountValidation" element={<AccountValidation />} />
 
             <Route path="*" element={<PageNotFound />}/>
 
@@ -125,8 +130,14 @@ function App() {
 export default App;
 
 
-// All Theme Color
-// All Layout
-// All Frame
-// All Login & Register
-// Text Editor
+// All Theme Color (Done)
+// All Layout (Done)
+// All Login & Register (Done)
+// Logo and Title Bar 
+// Delete Token When Expired (Done)
+// Comment & Rapiin
+// Handling API
+
+
+// All Frame 
+// Text Editor 

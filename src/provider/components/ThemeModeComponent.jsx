@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ThemeModeContext from '../contexts/ThemeMode';
+import ThemeModeContext from '../contexts/ThemeModeContext';
 
 export default function ThemeModeComponent({ children }) {
   const [themeMode, setThemeMode] = useState(localStorage.getItem('themeMode') || 'light');

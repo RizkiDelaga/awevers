@@ -19,7 +19,7 @@ import MuiAppBar from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { useNavigate } from 'react-router-dom';
-import ThemeModeContext from '../../provider/contexts/ThemeMode';
+import ThemeModeContext from '../../provider/contexts/ThemeModeContext';
 import CloseIcon from '@mui/icons-material/Close';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';

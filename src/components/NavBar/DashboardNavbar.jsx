@@ -4,7 +4,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
-import ThemeModeContext from '../../provider/contexts/ThemeMode';
+import ThemeModeContext from '../../provider/contexts/ThemeModeContext';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
 

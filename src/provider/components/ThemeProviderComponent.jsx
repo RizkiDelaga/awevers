@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ThemeModeContext from '../contexts/ThemeMode';
+import ThemeModeContext from '../contexts/ThemeModeContext';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 
 export default function ThemeProviderComponent({ children }) {
@@ -58,7 +58,6 @@ export default function ThemeProviderComponent({ children }) {
         styleOverrides: {
           root: {
             backgroundColor: '#FF0063',
-            height: '1px',
           },
         },
       },

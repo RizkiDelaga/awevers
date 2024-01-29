@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ThemeModeContext from '../../provider/contexts/ThemeMode';
+import ThemeModeContext from '../../provider/contexts/ThemeModeContext';
 import { Paper } from '@mui/material';
 
 export default function Dashboard() {
