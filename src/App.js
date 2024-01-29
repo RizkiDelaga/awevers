@@ -51,6 +51,10 @@ function App() {
   }
 
   const handleCheckToken = async () => {
+    if (!localStorage.getItem("accessToken")) {
+      return null
+    }
+    
     try {
       const res = await axios({
         method: 'GET',
