@@ -10,11 +10,12 @@ import {
   Typography,
 } from '@mui/material';
 import axios from 'axios';
-import { Fragment, useState } from 'react';
+import { Fragment, useContext, useState } from 'react';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import AlertContext from '../../provider/contexts/AlertContext';
 
 function Login() {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function Login() {
     email: '',
     password: '',
   });
+  const { showAlert } = useContext(AlertContext);
 
   const location = useLocation();
   const routerParams_directTo = new URLSearchParams(location.search).get('directTo');
@@ -43,6 +45,7 @@ function Login() {
       });
       localStorage.setItem('accessToken', res.data.accessToken);
 
+      showAlert(res.data.message, 'success');
       if (routerParams_directTo) {
         window.location.href = `${routerParams_directTo}/SSOProcess?token=${res.data.accessToken}`;
         return null;
@@ -50,6 +53,7 @@ function Login() {
       navigate('/Dashboard');
     } catch (error) {
       console.log(error);
+      showAlert(error.response.data.message, 'error');
     } finally {
       setLoading(false); // Set loading to false after the asynchronous operation (whether it succeeds or fails)
     }

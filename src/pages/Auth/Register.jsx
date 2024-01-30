@@ -1,10 +1,11 @@
-import { Box, Button, CircularProgress, Container, TextField } from '@mui/material';
+import { Alert, AlertTitle, Avatar, Box, Button, CircularProgress, Container, TextField } from '@mui/material';
 import axios from 'axios';
-import { Fragment, useState } from 'react';
+import { Fragment, useContext, useState } from 'react';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useLocation, useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import AlertContext from '../../provider/contexts/AlertContext';
 
 function Register() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ function Register() {
     password: '',
     confirmPassword: '',
   });
+  const { showAlert } = useContext(AlertContext);
 
   const location = useLocation();
   const routerParams_directTo = new URLSearchParams(location.search).get('directTo');
@@ -35,6 +37,9 @@ function Register() {
           password: formRegister.password,
         },
       });
+      localStorage.removeItem('accessToken');
+
+      showAlert(res.data.message, 'success');
       if (routerParams_directTo) {
         navigate(`/Login?directTo=${routerParams_directTo}`);
       } else {
@@ -42,6 +47,7 @@ function Register() {
       }
     } catch (error) {
       console.log(error);
+      showAlert(error.response.data.message, 'error');
     } finally {
       setLoading(false); // Set loading to false after the asynchronous operation (whether it succeeds or fails)
     }
@@ -49,19 +55,56 @@ function Register() {
 
   return (
     <Fragment>
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', mb: 6 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 6 }}>
         <img
           src="https://images.unsplash.com/photo-1618768400447-a4dc4a2c64bb?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           style={{ width: '80px', height: '100%', maxHeight: '35px', objectFit: 'cover' }}
           alt=""
         />
         <h3 style={{ marginTop: '8px', marginBottom: '8px' }}>Welcome to Awevers</h3>
-        <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Box sx={{ mr: 1 }}>Already have an Awevers account?</Box>
-          <Link to="/Login">
-            <Box sx={{ color: 'primary.main' }}>Login now</Box>
-          </Link>
-        </Box>
+
+        {localStorage.getItem('accessToken') ? (
+          <>
+            <Alert
+              variant="outlined"
+              color="primary"
+              severity="info"
+              icon={
+                <Avatar
+                  src={'https://img.freepik.com/free-vector/superhero-character-with-pop-art-style_197582-180.jpg'}
+                  sx={{ width: 32, height: 32 }}
+                />
+              }
+            >
+              <AlertTitle>
+                You are currently logged in as <strong>Rizki Delaga Prasetya</strong>
+              </AlertTitle>
+              Registering will log you out of your existing account
+            </Alert>
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={() => {
+                if (routerParams_directTo) {
+                  navigate(`/SSOValidation?directTo=${routerParams_directTo}`);
+                } else {
+                  navigate('/Login');
+                }
+              }}
+              disabled={loading}
+              sx={{ mt: 1 }}
+            >
+              login to my account now
+            </Button>
+          </>
+        ) : (
+          <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', mb: 1 }}>
+            <Box sx={{ mr: 1 }}>Already have an Awevers account?</Box>
+            <Link to="/Login">
+              <Box sx={{ color: 'primary.main' }}>Login now</Box>
+            </Link>
+          </Box>
+        )}
       </Box>
 
       <Container maxWidth="sm">

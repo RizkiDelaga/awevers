@@ -33,6 +33,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import SSOValidation from "./pages/SSOValidation/SSOValidation";
 import AuthLayout from "./layouts/AuthLayout";
+import AlertComponent from "./provider/components/AlertComponent";
 
 function App() {
 
@@ -78,53 +79,55 @@ function App() {
   return (
     <ThemeModeComponent>
       <ThemeProviderComponent>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<DashboardLayout />} >
-              <Route element={<ProtectedRoute />}>
-                <Route path="Dashboard" element={<Dashboard />} />
-                <Route path="Dashboard/Profile" element={<Profile />} />
-                <Route path="Dashboard/Profile/ChangePassword" element={<ChangePassword />} />
-                <Route path="Dashboard/Notifications" element={<Notifications />} />
-                <Route path="Dashboard/Settings" element={<Settings />} />
-                <Route path="Dashboard/ActiveSubscription" element={<ActiveSubscription />} />
+        <AlertComponent>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<DashboardLayout />} >
+                <Route element={<ProtectedRoute />}>
+                  <Route path="Dashboard" element={<Dashboard />} />
+                  <Route path="Dashboard/Profile" element={<Profile />} />
+                  <Route path="Dashboard/Profile/ChangePassword" element={<ChangePassword />} />
+                  <Route path="Dashboard/Notifications" element={<Notifications />} />
+                  <Route path="Dashboard/Settings" element={<Settings />} />
+                  <Route path="Dashboard/ActiveSubscription" element={<ActiveSubscription />} />
 
-                <Route path="Dashboard/PocketLink" element={<PocketLink />} />
-                <Route path="Dashboard/MasterPad" element={<MasterPad />} />
+                  <Route path="Dashboard/PocketLink" element={<PocketLink />} />
+                  <Route path="Dashboard/MasterPad" element={<MasterPad />} />
+                </Route>
               </Route>
-            </Route>
-            
-            <Route element={<DefaultLayout />} >
-              <Route path="" element={<Home />} />
               
-              <Route path="Subscription" element={<Subscription />} />
-              <Route path="Subscription/PaymentMethod" element={<PaymentMethod />} />
-              <Route path="Subscription/PaymentMethod/Checkout" element={<Checkout />} />
-              <Route path="Subscription/PaymentInfo" element={<PaymentInfo />} />
-              <Route path="Subscription/UseVoucherCode" element={<UseVoucherCode />} />
-              <Route path="Subscription/Promo" element={<Promo />} />
-              
-              <Route path="HelpCenter" element={<HelpCenter />} />
-              <Route path="TermsOfUse" element={<TermsOfUse />} />
-              <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
-              <Route path="Feedback" element={<Feedback />} />
+              <Route element={<DefaultLayout />} >
+                <Route path="" element={<Home />} />
+                
+                <Route path="Subscription" element={<Subscription />} />
+                <Route path="Subscription/PaymentMethod" element={<PaymentMethod />} />
+                <Route path="Subscription/PaymentMethod/Checkout" element={<Checkout />} />
+                <Route path="Subscription/PaymentInfo" element={<PaymentInfo />} />
+                <Route path="Subscription/UseVoucherCode" element={<UseVoucherCode />} />
+                <Route path="Subscription/Promo" element={<Promo />} />
+                
+                <Route path="HelpCenter" element={<HelpCenter />} />
+                <Route path="TermsOfUse" element={<TermsOfUse />} />
+                <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
+                <Route path="Feedback" element={<Feedback />} />
 
-            </Route>
-
-            <Route element={<AuthLayout />}>
-              <Route element={<HandleLoginSuccessfully />}>
-                <Route path="ForgotPassword" element={<ForgotPassword />} />
-                <Route path="Login" element={<Login />} />
               </Route>
-              <Route path="Register" element={<Register />} />
-            </Route>
-            
-            <Route path="SSOValidation" element={<SSOValidation />} />
 
-            <Route path="*" element={<PageNotFound />}/>
+              <Route element={<AuthLayout />}>
+                <Route element={<HandleLoginSuccessfully />}>
+                  <Route path="ForgotPassword" element={<ForgotPassword />} />
+                  <Route path="Login" element={<Login />} />
+                </Route>
+                <Route path="Register" element={<Register />} />
+              </Route>
+              
+              <Route path="SSOValidation" element={<SSOValidation />} />
 
-          </Routes>
-        </BrowserRouter>
+              <Route path="*" element={<PageNotFound />}/>
+
+            </Routes>
+          </BrowserRouter>
+        </AlertComponent>
       </ThemeProviderComponent>
     </ThemeModeComponent>
 
@@ -137,11 +140,15 @@ export default App;
 // All Theme Color (Done)
 // All Layout (Done)
 // All Login & Register (Done)
-// Logo and Title Bar 
+// Handling API (Done)
 // Delete Token When Expired (Done)
-// Comment & Rapiin
-// Handling API
+// Logo and Title Bar (1)
+// Icon (2)
+// Image SSO Integration (3)
+// Persiapan Diskusi (4)
 
+// All Frame (Night)
+// Create Link Page, Edit Link Page, and Link Page Viewer [2-4 page] (Night)
+// Text Editor (Night)
 
-// All Frame 
-// Text Editor 
+// Comment & Rapiin (Kamis)
