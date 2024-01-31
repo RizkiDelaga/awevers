@@ -142,10 +142,10 @@ export default App;
 // All Login & Register (Done)
 // Handling API (Done)
 // Delete Token When Expired (Done)
+// Image SSO Integration (Done)
 // Logo and Title Bar (1)
 // Icon (2)
-// Image SSO Integration (3)
-// Persiapan Diskusi (4)
+// Persiapan Diskusi (3)
 
 // All Frame (Night)
 // Create Link Page, Edit Link Page, and Link Page Viewer [2-4 page] (Night)

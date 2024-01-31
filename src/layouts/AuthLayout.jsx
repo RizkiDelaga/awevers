@@ -1,6 +1,7 @@
 import { Box, Grid, Paper } from '@mui/material';
 import { Fragment } from 'react';
 import { Outlet } from 'react-router';
+import SSOIntegrationImage from '../assets/images/SSOIntegrationImage.png';
 
 function AuthLayout() {
   return (
@@ -53,7 +54,7 @@ function AuthLayout() {
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Box
                   component={'img'}
-                  src="https://images.unsplash.com/photo-1602347615074-470b2dd82bcb?q=80&w=1957&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src={SSOIntegrationImage}
                   sx={{
                     width: { xs: '80%', sm: '60%', md: '60%' },
                     objectFit: 'cover',

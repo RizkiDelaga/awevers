@@ -2,9 +2,19 @@ import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem } from '
 import React from 'react';
 import { useNavigate } from 'react-router';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import PasswordIcon from '@mui/icons-material/Password';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
+import CardMembershipOutlinedIcon from '@mui/icons-material/CardMembershipOutlined';
+import SettingsApplicationsOutlinedIcon from '@mui/icons-material/SettingsApplicationsOutlined';
+import PortraitOutlinedIcon from '@mui/icons-material/PortraitOutlined';
+
+import HelpCenterOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
+import GavelOutlinedIcon from '@mui/icons-material/GavelOutlined';
+import LocalPoliceOutlinedIcon from '@mui/icons-material/LocalPoliceOutlined';
+import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
+
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 
 export default function ProfileMenu() {
   const navigate = useNavigate();
@@ -86,7 +96,7 @@ export default function ProfileMenu() {
 
         <MenuItem onClick={() => handleCloseAccountMenu('/Dashboard/Profile')} sx={{ color: 'primary.main' }}>
           <ListItemIcon sx={{ color: 'primary.main' }}>
-            <ManageAccountsIcon />
+            <PortraitOutlinedIcon />
           </ListItemIcon>
           Update Profile
         </MenuItem>
@@ -96,14 +106,14 @@ export default function ProfileMenu() {
           sx={{ color: 'primary.main' }}
         >
           <ListItemIcon sx={{ color: 'primary.main' }}>
-            <PasswordIcon />
+            <CardMembershipOutlinedIcon />
           </ListItemIcon>
           Active Subscription
         </MenuItem>
 
         <MenuItem onClick={() => handleCloseAccountMenu('/Dashboard/Settings')} sx={{ color: 'primary.main' }}>
           <ListItemIcon sx={{ color: 'primary.main' }}>
-            <PasswordIcon />
+            <SettingsApplicationsOutlinedIcon />
           </ListItemIcon>
           Settings
         </MenuItem>
@@ -112,28 +122,28 @@ export default function ProfileMenu() {
         <Divider variant="middle" />
         <MenuItem onClick={() => handleCloseAccountMenu('/HelpCenter')} sx={{ color: 'primary.main' }}>
           <ListItemIcon sx={{ color: 'primary.main' }}>
-            <PasswordIcon />
+            <HelpCenterOutlinedIcon />
           </ListItemIcon>
           Help Center
         </MenuItem>
 
         <MenuItem onClick={() => handleCloseAccountMenu('/TermsOfUse')} sx={{ color: 'primary.main' }}>
           <ListItemIcon sx={{ color: 'primary.main' }}>
-            <PasswordIcon />
+            <GavelOutlinedIcon />
           </ListItemIcon>
           Terms of Use
         </MenuItem>
 
         <MenuItem onClick={() => handleCloseAccountMenu('/PrivacyPolicy')} sx={{ color: 'primary.main' }}>
           <ListItemIcon sx={{ color: 'primary.main' }}>
-            <PasswordIcon />
+            <LocalPoliceOutlinedIcon />
           </ListItemIcon>
           Privacy Policy
         </MenuItem>
 
         <MenuItem onClick={() => handleCloseAccountMenu('/Feedback')} sx={{ color: 'primary.main' }}>
           <ListItemIcon sx={{ color: 'primary.main' }}>
-            <PasswordIcon />
+            <FeedbackOutlinedIcon />
           </ListItemIcon>
           Feedback
         </MenuItem>
